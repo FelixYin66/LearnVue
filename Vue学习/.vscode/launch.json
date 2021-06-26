@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "type": "pwa-chrome",
+            "name": "http://vue.js",
+            "request": "launch",
+            "url": "http://vue.js"
+        }
+    ]
+}

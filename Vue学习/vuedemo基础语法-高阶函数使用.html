@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2 @click = "click">高阶函数使用：filter,reduce,map</h2>
+        <span @click = "click">For循环测试</span>
+    </div>
+         <div></div>
+</body>
+<script src="vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        methods: {
+            click(){
+                //in遍历的是数组索引
+                const array = ["A","B","C"];
+                for(let item in array){
+                    console.log("值"+item);
+                }
+
+                //of遍历的是数组中的每一个对象
+                for(let item of array){
+                    console.log("值"+item);
+                }
+            }
+        },
+    })
+
+//filter,map,reduce
+const array2 = [1,2,3,4];
+
+const totalCount = array2.filter(function(v){
+    return v>0;
+}).map(function(v){
+    return v*2;
+}).reduce(function(preValue,value){
+    return preValue+value;
+},0);
+
+console.log("高阶函数使用之后："+totalCount);
+
+
+</script>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app{
+            background-color: blue;
+        }
+
+        #app2{
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+
+        <!-- 测试全局组件 -->
+        <my-cpnc></my-cpnc>
+        <my-cpnc></my-cpnc>
+        <my-cpnc></my-cpnc>
+
+        <!-- 测试局部组件 -->
+        <mycpnc2></mycpnc2>
+    </div>
+    <div id="app2">
+        <!-- 测试全局组件 -->
+        <my-cpnc></my-cpnc>
+        <my-cpnc></my-cpnc>
+        <mycpnc2></mycpnc2>
+        <mycpnc2></mycpnc2>
+    </div>
+
+</body>
+<script src="../../vue.js">
+</script>
+<script>
+    //1.创建组件构造器对象
+    const cpnc = Vue.extend(
+        {
+            template: `
+            <div>
+                <h2>你好</h2>
+                <p>内容</p>
+            </div>
+            `
+        }
+    )
+
+    //2.注册组件  3.使用我们的组件 
+    // Vue.component('my-cpnc', cpnc) //my-cpnc 为组件名字,这种方式注册的组件为全局组件，意味着可以在多个Vue实例中使用
+
+    //第一个Vue实例
+    const app = new Vue({
+        el: "#app",
+        data: {
+            message: '你好呀'
+        }
+    })
+
+
+    //第二个Vue实例   一般只创建一个Vue实例，这个是为了验证注册全局组件 
+    const app2 = new Vue({
+        el: "#app2",
+        data: {
+            message: '你好呀',
+        },
+        components:{
+            mycpnc2:cpnc  //局部组件注册，只在实例app2中注册，并起作用
+        }
+    })
+</script>
+</html>

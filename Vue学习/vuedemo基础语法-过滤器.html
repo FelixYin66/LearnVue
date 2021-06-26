@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "app">
+        <h2>过滤器使用</h2>
+        <span>原始值:{{price}}</span><br/>
+        <!-- 过滤器的使用 -->
+        <span>过滤原始值:{{price | showPrice}}</span><br/>
+        <button @click="showPrice2(price)">价格使用过滤器处理</button>
+    </div>
+         <div></div>
+</body>
+<script src="vue.js"></script>
+<script>
+    const app = new Vue({
+        el:"#app",
+        data:{
+            price:90
+        },
+        filters:{
+            showPrice(price){
+                console.log(price);
+                return "￥"+price.toFixed(2);
+            }
+        },
+        methods: {
+            showPrice2(price){
+                console.log(price);
+                return "￥"+price.toFixed(2);
+            }
+        },
+    })
+</script>
+</html>

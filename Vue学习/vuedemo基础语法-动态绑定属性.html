@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .active{
+            color: red;
+        }
+        .active2{
+            color: greenyellow;
+        }
+    </style>
+</head>
+<body>
+    <div id = "app">
+        <img v-bind:src="imgURL" alt="">
+        <a v-bind:href="hrefURL">百度一下</a>
+        <img :src="imgURL" alt="" width="300" height="300"> <!-- v-bind语法糖写法 -->
+        <a :href="hrefURL">百度一下222</a> <!-- v-bind语法糖写法 -->
+        <a href="" :class="aClass">你好呀动态Class</a>
+        <a href="" :class="{active:isActive,line:isLine}">动态Class</a> <!-- 动态绑定class中 传输一个对象 -->
+        <a href="" :class="getClass()">动态Class</a> <!-- 通过函数返回绑定Class，如果嫌弃过长的话 -->
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                imgURL:"https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fimg.juimg.com%2Ftuku%2Fyulantu%2F140703%2F330746-140f301555752.jpg&refer=http%3A%2F%2Fimg.juimg.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1623054230&t=7a6e4cdc628020ccc4862428fde64f63",
+                hrefURL:"https://www.baidu.com",
+                aClass:"active",
+                isActive:true,
+                isLine:true
+            },
+            methods: {
+                getClass:function(){
+                    return {active2:this.isActive,line2:this.isLine};
+                }
+            },
+        })
+    </script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        
+        <h2>
+            key属性使用:防止复用与复用，其渲染过程有一个diff算法（virtual dom）
+        </h2>
+        <h2></h2>
+        <span>
+            如果像Array数组中index=1地方插入新元素，virtual dom diff的算法效率比较低
+            <ul>
+                <li v-for="item in array">{{item}}</li>
+            </ul>
+        </span>
+
+        <span>
+            如果像Array数组中index=1地方插入新元素，virtual dom diff的算法效率比较低，如果将value作为key的话，会出现重用机制（index 无法达到唯一性）
+            <ul>
+                <li v-for="item in array" :key="item">{{item}}</li>
+            </ul>
+        </span>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                array:["ItemA","ItemB","ItemC"]
+            },
+            computed:{
+
+            }
+        })
+    </script>
+</body>
+</html>

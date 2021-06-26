@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- stop修饰符的使用 stop表示停止冒泡   从下到上 -->
+    <div id="app" @click.stop="clickEvent3">
+        <!-- v-on事件监听  @click 语法糖 监听元素点击事件 -->
+        <h2 @click.stop="clickEvent">点击了{{clickCount}}次</h2>
+        <!-- v-on 中event参数值获取  通过$符号 -->
+        <h2 @click="clickEvent2($event)">点击了{{clickCount}}次</h2>
+        <!-- v-on修饰符 -->
+        <h2 @click="clickEvent3($event)">点击了{{clickCount}}次</h2>
+        <form action="baidu">
+            <!-- prevent修饰符  组织默认事件 -->
+            <input type="submit" value="提交" @click.prevent="clickEvent5">
+        </form>
+        <customEL @click.native="clickEvent5">自定义组件点击</customEL>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+              clickCount:0  
+            },
+            methods:{
+                clickEvent(){
+                    console.log("点击事件1");
+                    this.clickCount++;
+                },
+                clickEvent2(param){
+                    // console.log(param);
+                    console.log("点击事件2");
+                },
+                clickEvent3(){
+                    console.log("点击事件3");
+                },
+                clickEvent4(){
+                    console.log("提交事件");
+                },
+                clickEvent5(){
+                    console.log("提交事件5");
+                }
+            }
+        })
+    </script>
+</body>
+</html>

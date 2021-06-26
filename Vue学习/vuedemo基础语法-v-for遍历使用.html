@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id = "app">
+        <!-- 遍历一个数组 -->
+        遍历一个数组
+        <ul>
+            <li v-for="value,key in info">{{key}}:{{value}}</li>
+        </ul>
+
+        <!-- 遍历一个对象 -->
+
+        遍历一个对象
+        <ul>
+            <li v-for="item in info">{{item}}</li>
+        </ul>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                array:['Item0','Item1','Item2',"Item3"],
+                info:{
+                    name:"Felix",
+                    address:"重庆",
+                    height:"175cm"
+                }
+            },
+            computed:{
+
+            }
+        })
+    </script>
+</body>
+</html>

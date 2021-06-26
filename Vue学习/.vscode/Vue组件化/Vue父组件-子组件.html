@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #app{
+            background-color: red;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app">
+        <!-- 注意点：在HTML中不区分大小写，所以在注册组件时 就算标签是有大写字母存在，在html中要写成小写。如果写成大写，html变成小写，最后找不到大写字母标签 -->
+        <parentcpnt></parentcpnt>
+        <!-- <cpntt></cpntt> -->
+    </div>
+
+</body>
+<script src="../../vue.js"></script>
+<script>
+    //子组件
+    const cpnt = Vue.extend({
+        template: `
+        <div>
+            <h2>标题 组件1</h2>
+            <span>组件内容</span>
+        </div>
+        `
+    })
+
+    //父组件
+    const prtCpntt = Vue.extend({
+        template: `
+        <div>
+            <h1>标题 组件2</h1>
+            <span>组件内容</span>
+            <cpntt></cpntt>
+            </div>
+        `,
+        components:{
+            cpntt:cpnt
+        }
+    })
+
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"标题"
+        },
+        components:{
+            parentcpnt:prtCpntt
+        }
+    })
+</script>
+
+</html>

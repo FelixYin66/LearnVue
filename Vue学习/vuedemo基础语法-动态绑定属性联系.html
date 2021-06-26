@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .click{
+            color: red;
+        }
+        .unClick{
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <ul>
+            <li v-for="movie,index in movies" :class="getClass(index)"  v-on:click="clickEvent(index)">{{movie}}</li>
+        </ul>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                movies:["海贼王","火影忍者","名侦探柯南","犬夜叉"],
+                clickIndex:0 /* 默认第一元素显示红色 */
+            },
+            methods: {
+                clickEvent:function(index){
+                    this.clickIndex = index;
+                },
+                getClass:function(index){
+                    if(this.clickIndex == index){
+                        return "click";
+                    }
+                    return "unClick";
+                }
+            },
+        })
+    </script>
+</body>
+</html>

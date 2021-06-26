@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>数组中哪些函数是响应式的</h2>
+        <span>
+            <ul>
+                <li v-for="item in array">{{item}}</li>
+            </ul>
+        </span>
+        <button @click="click">点击添加或者替换新元素</button>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                array:["A","B","C"]
+            },
+            methods: {
+                click(){
+                    //push,splice,pop,shift,unshift 都是响应式
+                    //也可以使用Vue的set函数,第一个参数 为操作的对象，第二个为对象能接受的参数，array为索引，第三个是替换的元素值
+                    Vue.set(this.array,0,"新元素")
+                }
+            },
+        })
+    </script>
+</body>
+</html>

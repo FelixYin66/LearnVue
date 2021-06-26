@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <h2>条件判断:v-if,v-else,v-else-if</h2>
+        <h2 v-if="show" @click="click">if显示了</h2>
+        <h2 v-else @click="click">else显示了</h2>
+
+        <h2 v-if="score>0 && score<60" @click="click">分数大于0,且小于60</h2>
+        <h2 v-else-if="score > 60" @click="click">分数大于60,且小于80</h2>
+        <h2 v-else-if="score > 80" @click="click">分数大于80,且小于100</h2>
+        <h2 v-else >{{score}}</h2>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+        const app = new Vue({
+            el:"#app",
+            data:{
+                show:true,
+                score:1
+            },
+            methods: {
+                click(){
+                    this.show = !this.show;
+                }
+            },
+        })
+    </script>
+</body>
+</html>

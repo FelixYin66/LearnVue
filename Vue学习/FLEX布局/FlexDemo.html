@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .Main {
+            display: flex;
+            justify-content: center;
+            /*主轴对齐方式*/
+            /* align-items: stretch; 侧轴对齐方式 */
+            flex-wrap: wrap;
+            /*默认是不换行的*/
+            align-content: flex-end;
+            /*因为有了换行，此时我们侧轴上控制子元素的对齐方式 我们使用 align-content  tip:在单行中没有效果*/
+            height: 300px;
+            background-color: rosybrown;
+        }
+
+        .Main span {
+                background-color: red;
+                width: 400px;
+                height: 100px;
+                margin: 10px;
+            }
+
+        /* Item Flex属性使用  占用剩余空间 */
+        .Main2 {
+            display: flex;
+            margin: 30px auto; /*处于父容器居中位置 上下100px间距*/
+            height: 300px;
+            background-color: goldenrod;
+        }
+
+        .Main2 div{
+            background-color: red;
+        }
+
+        .Main2 div:nth-child(1){
+            width: 200px;
+            height: 100px;
+        }
+
+        .Main2 div:nth-child(2){
+            /* width: 200px;
+            height: 120px; */
+            /* flex 属性定义子项目分配剩余空间，用flex来表示占用多少份数  默认为0 */
+            flex:1; 
+            background-color: green;
+        }
+
+        .Main2 div:nth-child(3){
+            width: 150px;
+            height: 100px;
+        }
+
+
+        /*Item的 Flex 属性使用  均等分 */
+
+        .Main3{
+            display: flex;
+            margin: 30px auto; /*处于父容器居中位置 上下100px间距*/
+            height: 300px;
+            background-color: indigo;
+        }
+
+        .Main3 div{
+            background-color: hotpink;
+            margin: 30px;
+        }
+
+        /* 均等分父容器空间 */
+        .Main3 :nth-child(1){
+            flex: 1;
+        }
+
+        .Main3 :nth-child(2){
+            /* 占用多少份 */
+            flex: 2;
+        }
+
+        .Main3 :nth-child(3){
+            flex: 1;
+        }
+
+
+        /* align-self:align-self 属性允许单个项目有与其他项目不一样的对齐方式，可覆盖align-items属性。默认值auto,
+           表示继承父容器的align-items属性，如果没有父容器，则等同于stretch
+         */
+        .Main4{
+            display: flex;
+            background-color: khaki;
+            height: 400px;
+        }
+
+        .Main4 div{
+            background-color: lawngreen;
+            width: 300px;
+            height: 150px;
+            margin: 10px;
+        }
+
+        .Main4 div:nth-child(2){
+            align-self: stretch; /*如果设置了高度  stretch是不会拉伸*/
+            height: auto;
+            background-color: lemonchiffon;
+        }
+
+
+        /* Item 的order属性使用:order定义Item的排列顺序，数值越小，越靠前，默认为0 */
+
+        .Main5 {
+            display: flex;
+            background-color: lightblue;
+            height: 400px;
+            margin: 50px auto;
+        }
+
+        .Main5 div{
+            width: 300px;
+            height: 150px;
+            margin: 10px;
+            background-color: lightcoral;
+        }
+
+
+        .Main5 :nth-child(1){
+            order: 2;
+        }
+
+        .Main5 :nth-child(2){
+            order:1;
+        }
+
+        .Main5 :nth-child(3){
+            order: 0;
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <div class="Main">
+        <span>Main-1</span>
+        <span>Main-2</span>
+        <span>Main-3</span>
+        <span>Main-4</span>
+        <span>Main-5</span>
+        <span>Main-6</span>
+    </div>
+
+    
+    <div class="Main2">
+        <div>Main2-1</div>
+        <div>Main2-2</div>
+        <div>Main2-3</div>
+    </div>
+
+
+    <div class="Main3">
+        <div>Main3-1</div>
+        <div>Main3-2</div>
+        <div>Main3-3</div>
+    </div>
+
+
+    <div class="Main4">
+        <div>Main4-1</div>
+        <div>Main4-2</div>
+        <div>Main4-3</div>
+    </div>
+
+
+    <div class="Main5">
+        <div>Main5-1</div>
+        <div>Main5-2</div>
+        <div>Main5-3</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <cpnt></cpnt>
+        <cpnttemplate></cpnttemplate>
+        <cpnttemplate_part></cpnttemplate_part>
+        <cpnttemplate_part2></cpnttemplate_part2>
+    </div>
+</body>
+<!-- 1.第一种分离是写法 -->
+<script type="text/x-template" id="cpntTemplate">
+    <!-- 通过id进行关联 -->
+    <div>
+        <h1>第一种分离是写法===全局的</h1>
+        <span>分离式写法</span>
+    </div>
+</script>
+<script type="text/x-template" id="cpntTemplate2">
+    <!-- 通过id进行关联 -->
+    <div>
+        <h1>第一种分离是写法===局部的</h1>
+        <span>分离式写法</span>
+    </div>
+</script>
+
+
+<!-- 2.第二种分离式写法 -->
+<template id="cpntTemplate3">
+    <div>
+        <h1>第二种分离式写法</h1>
+        <span>分离式写法</span>
+    </div>
+</template>
+
+<script src="../../vue.js"></script>
+<script>
+
+  //全局组件
+   Vue.component("cpnttemplate",{
+       template:"#cpntTemplate"
+   })
+
+    const app = new Vue({
+        el:"#app",
+        data:{
+            message:"消息内容"
+        },
+        components:{
+            cpnt:{
+                template:`
+                  <div>
+                    <h1>非分离式写法</h1>
+                    <span>你好呀你好呀</span>
+                  </div>
+                `
+            },
+            cpnttemplate_part:{
+                template:"#cpntTemplate2"
+            },
+            cpnttemplate_part2:{
+                template:"#cpntTemplate3"
+            }
+        }
+    })
+</script>
+</html>

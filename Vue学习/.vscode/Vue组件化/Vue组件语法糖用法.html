@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <cpnt></cpnt>
+        <cpntt></cpntt>
+        <cpnttt></cpnttt>
+    </div>
+</body>
+<script src="../../vue.js"></script>
+<script>
+
+
+    /*
+    原始组件注册方法
+    */
+    //组件构造器
+    const cpnt = Vue.extend({
+        template: `
+        <div> 
+            <h2>HAHAHA全局组件（非语法糖写法）</h2>
+            <span>
+                你好你好
+            </span>
+            <span>非语法糖写法</span>
+        </div>
+        `
+    });
+
+    //全局组件
+    Vue.component("cpnt", cpnt)
+
+
+    /*
+      语法糖组件注册方法,最终还会调用extend函数方法 (全剧组件)
+    */
+    Vue.component(
+        "cpntt",
+        {
+            template: `
+        <div> 
+            <h2>HAHAHA全局组件</h2>
+            <span>
+                你好你好
+            </span>
+            <span>
+                语法糖写法(全局组件)
+            </span>
+        </div>
+        `
+        }
+    )
+
+    const app = new Vue({
+        el: "#app",
+        data: {
+            message: "标题",
+        },
+        components: {
+            "cpnttt": {
+                template: `
+        <div> 
+            <h2>HAHAHA 局部组件</h2>
+            <span>
+                你好你好
+            </span>
+            <span>
+                语法糖写法(局部组件)
+            </span>
+        </div>
+        `
+            }
+        }
+    })
+</script>
+
+</html>
