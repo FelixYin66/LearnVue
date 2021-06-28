@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <customtag></customtag>
+        <customtagpart :ctitle="title" :cmessage="message" @child-click="receive"></customtagpart>
+        <h2>子组件传递的数据</h2>
+        <span>
+            {{childData}}
+        </span>
+
+    </div>
+</body>
+<template id="CustomTag">
+    <div>
+        <h1>自定义标签（全局）</h1>
+        <span>内容内容内容内容</span>
+    </div>
+</template>
+<template id="CustomTagPart">
+    <div>
+        <h1>自定义标签（局部）</h1>
+        <span>内容内容内容内容</span>
+        <h2>父容器传递过去的数据</h2>
+        <span>{{ctitle}}</span>
+        <span>{{cmessage}}</span>
+        <button @click="btnClick">请求数据</button>
+    </div>
+</template>
+<script src="../../Vue学习/vue.js"></script>
+<script>
+    /*
+      父子组件通讯有两种方式：
+      1.父组件向子组件传递数据，通过props
+      2.子组件向父组件传递数据，通过事件events (自定义事件 emit)
+    */
+
+    //全局使用
+    Vue.component("customtag",{
+        template:"#CustomTag",
+        props:{
+            ctitle:{
+                type:String,
+                default:"默认Title"
+            },
+            cmessage:{
+                type:String,
+                default:"默认Message",
+                // required:true //必传参数，当没有传的时候 会报错
+            }, //规范写法：1.有属性数据类型 2.有属性默认值
+            tags:{
+                type:Array,
+                default(){
+                    return []
+                } 
+            },//类型是对象或者数组时必须返回一个函数
+            page:{
+                type:Object,
+                default(){
+                    return {
+                        num:1,
+                        total:20
+                    }
+                }
+            }//类型是对象或者数组时必须返回一个函数
+        }
+    })
+
+    const customtagpart = {
+                template:"#CustomTagPart",
+                props:["ctitle","cmessage"], //属性数组 ,这种写法不是很规范
+                methods:{
+                    btnClick(){
+                        console.log("====按钮点击")
+                        this.$emit("child-click","ChildData") //最好不要使用驼峰，使用-代替，要不然事件没法正常响应
+                    },
+                }
+            }
+
+    const app = new Vue({
+        methods:{
+            receive(val){
+                this.childData += val //+=this.childData; //数据拼接
+
+            }
+        },
+        el:"#app",
+        components:{
+            customtagpart  //也可以写成customtagpart:customtagpart 这个属于增强写法
+        },
+        data(){
+            return {
+                message:"父组件的数据:Message",
+                title:"父组件的数据:Title",
+                childData:"",
+            }
+        }
+
+    });
+</script>
+</html>
